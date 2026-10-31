@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduVerse — Sistem Informasi Manajemen SDM</title>
+<style>
+:root{--navy:#172554;--blue:#3157d5;--sky:#eaf0ff;--ink:#1e293b;--muted:#64748b;--line:#e2e8f0;--bg:#f6f8fc;--white:#fff;--green:#0f9f75;--orange:#e99a28;--red:#dc5353;--purple:#805ad5}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}.sidebar{background:var(--navy);color:#fff;padding:24px 16px;display:flex;flex-direction:column;gap:24px}.brand{display:flex;align-items:center;gap:11px;padding:0 8px}.brand-icon{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#8b9dff,#55d6be);display:grid;place-items:center;font-size:22px;color:#172554;font-weight:900}.brand h1{font-size:18px;margin:0}.brand small{display:block;color:#b8c6f3;font-size:11px;margin-top:4px}.nav-label{font-size:10px;letter-spacing:1.5px;color:#92a5df;padding:0 12px;margin:5px 0}.nav{display:grid;gap:5px}.nav button{border:0;color:#dce5ff;background:transparent;text-align:left;padding:12px;border-radius:10px;display:flex;gap:12px;align-items:center;font-size:13px}.nav button:hover,.nav button.active{background:#2c3b73;color:#fff}.nav .ico{width:20px;text-align:center;font-size:16px}.side-bottom{margin-top:auto;background:#223363;border:1px solid #354577;border-radius:14px;padding:14px;font-size:12px;color:#d8e2ff;line-height:1.6}.side-bottom strong{display:block;color:white;margin-bottom:5px}.main{min-width:0}.topbar{height:78px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:20px}.crumb{font-size:12px;color:var(--muted)}.crumb strong{color:var(--ink)}.top-right{display:flex;align-items:center;gap:15px}.search{position:relative}.search input{width:230px;border:1px solid var(--line);border-radius:10px;padding:10px 12px 10px 35px;outline:none;background:#fafbff}.search span{position:absolute;left:12px;top:9px;color:var(--muted)}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#dfe7ff;color:#3157d5;font-weight:800;font-size:13px}.profile{font-size:12px}.profile small{display:block;color:var(--muted);margin-top:3px}.content{padding:28px 32px 40px;max-width:1600px;margin:auto}.page-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:24px}.eyebrow{color:var(--blue);font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase}.page-head h2{margin:7px 0 7px;font-size:27px;letter-spacing:-.7px}.page-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}.btn{border:0;border-radius:9px;padding:11px 15px;font-weight:700;font-size:12px;display:inline-flex;align-items:center;gap:7px}.btn-primary{background:var(--blue);color:white;box-shadow:0 5px 12px #3157d526}.btn-primary:hover{background:#2446b8}.btn-light{background:white;border:1px solid var(--line);color:var(--ink)}.btn-danger{background:#fff0f0;color:#b42323;border:1px solid #ffd8d8}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:20px}.stat{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px;position:relative;overflow:hidden}.stat-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px}.stat-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:18px}.stat strong{font-size:29px;display:block;margin:12px 0 5px;letter-spacing:-1px}.stat small{font-size:11px;color:var(--muted)}.stat small b{color:var(--green)}.grid-main{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,1fr);gap:18px}.panel{background:white;border:1px solid var(--line);border-radius:15px;padding:20px;margin-bottom:18px;min-width:0}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.panel-head h3{margin:0;font-size:15px}.panel-head p{margin:5px 0 0;color:var(--muted);font-size:11px}.link-btn{border:0;background:none;color:var(--blue);font-size:12px;font-weight:700}.chart-area{height:205px;display:flex;align-items:flex-end;gap:14px;padding:8px 5px 0;border-bottom:1px solid var(--line);background:repeating-linear-gradient(to bottom,transparent 0,transparent 49px,#f0f3f8 50px)}.bar-group{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px}.bars{height:calc(100% - 22px);width:100%;display:flex;align-items:flex-end;justify-content:center;gap:5px}.bar{width:22%;max-width:24px;border-radius:5px 5px 0 0;background:#9baeff;min-height:8px}.bar.dark{background:var(--blue)}.bar-label{font-size:10px;color:var(--muted);padding-bottom:7px}.legend{display:flex;gap:18px;font-size:11px;color:var(--muted);margin-top:15px}.legend i{display:inline-block;width:8px;height:8px;border-radius:3px;margin-right:6px}.activity{display:grid;gap:18px}.activity-item{display:flex;gap:12px;align-items:flex-start}.activity-icon{width:36px;height:36px;flex-shrink:0;border-radius:11px;display:grid;place-items:center;background:#eef2ff}.activity-item strong{font-size:12px;display:block;margin:2px 0 4px}.activity-item p{font-size:11px;line-height:1.5;color:var(--muted);margin:0}.activity-item time{font-size:10px;color:#94a3b8;display:block;margin-top:5px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{text-align:left;font-size:10px;letter-spacing:.5px;color:#8490a4;text-transform:uppercase;background:#fafbfe;padding:12px 13px;border-bottom:1px solid var(--line)}td{padding:13px;border-bottom:1px solid #edf0f5;font-size:12px}tbody tr:last-child td{border-bottom:0}.person{display:flex;align-items:center;gap:10px}.mini-avatar{width:33px;height:33px;display:grid;place-items:center;border-radius:10px;background:#e8edff;color:#3454c9;font-weight:800;font-size:11px}.person strong{display:block;font-size:12px}.person small{display:block;font-size:10px;color:var(--muted);margin-top:4px}.badge{padding:5px 9px;border-radius:30px;font-size:10px;font-weight:800;display:inline-block}.badge-green{color:#087956;background:#e2f8ef}.badge-blue{color:#3157d5;background:#eaf0ff}.badge-orange{color:#a56508;background:#fff3d8}.badge-red{color:#b42323;background:#ffe8e8}.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:15px}.filters input,.filters select,.form-control{border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:white;font-size:12px;color:var(--ink);outline:none}.filters input{min-width:220px}.empty{padding:36px;text-align:center;color:var(--muted);font-size:13px}.hidden{display:none!important}.section-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.feature-card{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff}.feature-card .big-icon{width:43px;height:43px;border-radius:13px;display:grid;place-items:center;font-size:20px;background:#edf1ff;margin-bottom:14px}.feature-card h3{font-size:14px;margin:0 0 8px}.feature-card p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 14px}.feature-card .count{font-size:22px;font-weight:800}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field label{display:block;font-size:11px;font-weight:700;margin-bottom:7px;color:#475569}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:9px;padding:11px 12px;font-size:12px;background:#fff}.field.full{grid-column:1/-1}.modal-backdrop{position:fixed;inset:0;background:#0f172a88;display:grid;place-items:center;padding:20px;z-index:10}.modal{background:#fff;width:min(560px,100%);border-radius:17px;padding:24px;box-shadow:0 20px 80px #0003;max-height:90vh;overflow:auto}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.modal-head h3{margin:0;font-size:18px}.close{border:0;background:#f1f5f9;border-radius:8px;width:32px;height:32px;font-size:18px}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:22px}.notice{background:#eff6ff;border:1px solid #dbeafe;border-radius:12px;padding:14px;font-size:12px;color:#1e40af;line-height:1.6;margin-bottom:18px}.toast{position:fixed;right:24px;bottom:24px;background:#172554;color:#fff;padding:13px 18px;border-radius:10px;font-size:12px;box-shadow:0 10px 30px #0002;z-index:20;animation:slide .2s ease}@keyframes slide{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}.footer{font-size:10px;color:#94a3b8;text-align:center;margin-top:22px}.mobile-menu{display:none}
+@media(max-width:1100px){.app{grid-template-columns:215px 1fr}.stats{grid-template-columns:repeat(2,1fr)}.grid-main{grid-template-columns:1fr}.section-cards{grid-template-columns:repeat(2,1fr)}.content{padding:24px}.topbar{padding:0 24px}}
+@media(max-width:760px){.app{display:block}.sidebar{display:none;position:fixed;z-index:8;inset:0 auto 0 0;width:250px}.sidebar.open{display:flex}.topbar{height:68px;padding:0 16px}.mobile-menu{display:inline-flex;border:0;background:#eef2ff;border-radius:9px;width:36px;height:36px;align-items:center;justify-content:center}.crumb{display:none}.search input{width:145px}.profile{display:none}.content{padding:22px 15px}.page-head{align-items:flex-start;flex-direction:column}.page-head h2{font-size:23px}.stats{gap:10px}.stat{padding:14px}.stat strong{font-size:25px}.stat-top{font-size:10px}.stat-icon{width:32px;height:32px}.section-cards{grid-template-columns:1fr}.panel{padding:15px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.filters input{min-width:100%;width:100%}}
+
+/* Visual refresh: refined gradients, depth, spacing, and guide layout */
+body{background:linear-gradient(135deg,#f7f9ff 0%,#f3f6fc 52%,#f8faff 100%)}
+.sidebar{background:linear-gradient(165deg,#101d49 0%,#192b62 55%,#233d7c 100%);box-shadow:8px 0 28px #17255412}
+.brand-icon{box-shadow:0 8px 20px #55d6be2a}
+.nav button{transition:background .2s ease,transform .2s ease}
+.nav button:hover{transform:translateX(2px)}
+.nav button.active{box-shadow:inset 3px 0 #77e2d1;background:linear-gradient(90deg,#344b91,#2b3d79)}
+.topbar{box-shadow:0 3px 14px #17255405}
+.content{max-width:1660px}
+.stat,.panel,.feature-card{box-shadow:0 5px 22px #20366d08;transition:transform .18s ease,box-shadow .18s ease}
+.stat:hover,.feature-card:hover{transform:translateY(-2px);box-shadow:0 10px 26px #20366d12}
+.btn{transition:transform .15s ease,filter .15s ease}
+.btn:hover{filter:brightness(.98);transform:translateY(-1px)}
+.page-head h2{font-size:29px}
+.guide-hero{background:linear-gradient(120deg,#243e91 0%,#3157d5 54%,#667cf0 100%);border-radius:22px;padding:30px 34px;color:#fff;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:20px;position:relative;overflow:hidden;margin-bottom:20px;box-shadow:0 16px 34px #3157d526}
+.guide-hero:after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:#ffffff0c;right:-100px;top:-180px}
+.guide-pill{display:inline-block;border:1px solid #ffffff4d;background:#ffffff18;padding:6px 10px;border-radius:20px;font-size:10px;font-weight:800;letter-spacing:1px}
+.guide-hero h3{font-size:27px;line-height:1.25;letter-spacing:-.6px;margin:15px 0 10px;max-width:490px}
+.guide-hero p{font-size:13px;line-height:1.8;color:#e2e9ff;max-width:560px;margin:0 0 20px}
+.btn-white{background:#fff;color:#2446b8}
+.guide-illustration{height:220px;position:relative;display:grid;place-items:center;z-index:1}
+.guide-core{width:90px;height:90px;border-radius:27px;background:linear-gradient(135deg,#a7f3e5,#fff);display:grid;place-items:center;color:#233d7c;font-size:43px;font-weight:900;box-shadow:0 14px 38px #101d4940;z-index:2}
+.guide-orbit{position:absolute;border:1px solid #ffffff55;border-radius:50%;width:190px;height:190px}
+.orbit-two{width:145px;height:145px;border-style:dashed;transform:rotate(25deg)}
+.guide-float{position:absolute;background:#ffffffed;color:#233d7c;border-radius:13px;padding:10px 13px;font-size:19px;box-shadow:0 8px 25px #101d4922;display:grid;place-items:center;min-width:67px}
+.guide-float small{font-size:9px;font-weight:800;margin-top:3px}
+.float-a{top:17px;left:10%}.float-b{right:5%;top:45px}.float-c{bottom:12px;left:40%}
+.guide-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.guide-step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;position:relative;overflow:hidden;box-shadow:0 5px 22px #20366d08}
+.step-number{position:absolute;right:15px;top:10px;font-size:27px;font-weight:900;color:#edf1ff}
+.step-icon{width:42px;height:42px;border-radius:13px;background:#edf1ff;color:#3157d5;display:grid;place-items:center;font-size:20px;margin-bottom:15px}
+.guide-step h3{font-size:14px;margin:0 0 9px;position:relative}
+.guide-step p{font-size:12px;line-height:1.75;color:var(--muted);margin:0 0 14px}
+.guide-step .link-btn{padding:0}
+.guide-note{display:flex;gap:15px;align-items:flex-start;margin-top:18px;background:linear-gradient(120deg,#fff,#f8faff)}
+.guide-note-icon{font-size:23px;background:#fff2d9;border-radius:12px;width:44px;height:44px;display:grid;place-items:center;flex-shrink:0}
+.guide-note h3{margin:3px 0 8px;font-size:14px}
+.guide-note ul{padding-left:18px;margin:0;color:var(--muted);font-size:12px;line-height:1.9}
+@media(max-width:1050px){.guide-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-hero{grid-template-columns:1fr .7fr}}
+@media(max-width:760px){.guide-hero{grid-template-columns:1fr;padding:24px}.guide-hero h3{font-size:23px}.guide-illustration{height:170px}.guide-steps{grid-template-columns:1fr}.page-head h2{font-size:24px}.guide-note{padding:15px}}
+
+
+/* Halaman login pembuka */
+body.auth-locked{overflow:hidden}
+body.auth-locked .app{display:none!important}
+#loginScreen{display:none;min-height:100vh;place-items:center;padding:24px;background:radial-gradient(circle at 15% 20%,#6579f4 0,transparent 32%),radial-gradient(circle at 90% 80%,#43c6ac 0,transparent 28%),linear-gradient(135deg,#111c4e,#293b83 58%,#4256b8);position:relative;overflow:hidden}
+body.auth-locked #loginScreen{display:grid}
+.login-orb{position:absolute;border:1px solid #ffffff20;border-radius:50%;pointer-events:none}.login-orb.one{width:420px;height:420px;right:-100px;top:-150px}.login-orb.two{width:280px;height:280px;left:-80px;bottom:-110px}
+.login-card{position:relative;z-index:1;width:min(450px,100%);background:#fffffffa;border:1px solid #ffffff8c;border-radius:26px;padding:38px;box-shadow:0 28px 90px #09143d55;backdrop-filter:blur(12px)}
+.login-brand{display:flex;align-items:center;gap:13px;margin-bottom:32px}.login-brand-icon{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;font-size:27px;font-weight:900;color:#172554;background:linear-gradient(135deg,#a7b5ff,#6ce3ca);box-shadow:0 8px 18px #3157d52b}.login-brand h1{font-size:23px;letter-spacing:-.7px;margin:0;color:#172554}.login-brand p{font-size:11px;color:#718096;margin:5px 0 0}.login-kicker{font-size:10px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#5269d9}.login-card h2{font-size:29px;letter-spacing:-1px;color:#172554;margin:9px 0 8px}.login-intro{font-size:13px;line-height:1.7;color:#64748b;margin:0 0 25px}.login-field label{display:block;font-size:12px;font-weight:750;color:#334155;margin-bottom:9px}.password-wrap{display:flex;align-items:center;border:1px solid #dbe2f0;border-radius:12px;background:#fff;overflow:hidden;transition:.2s}.password-wrap:focus-within{border-color:#6579f4;box-shadow:0 0 0 4px #6579f41c}.password-wrap input{border:0;outline:0;width:100%;padding:14px;font-size:14px;background:transparent}.password-wrap button{border:0;background:transparent;color:#64748b;padding:10px 13px;font-size:12px;font-weight:700}.login-submit{width:100%;justify-content:center;padding:14px;margin-top:18px;border-radius:12px;font-size:13px;background:linear-gradient(100deg,#3157d5,#6b60db);box-shadow:0 10px 22px #3157d536}.login-error{display:none;background:#fff0f0;color:#b42323;border:1px solid #ffd5d5;border-radius:10px;padding:10px 12px;margin-top:12px;font-size:12px}.login-hint{margin-top:20px;padding:13px;border-radius:12px;background:#f0f4ff;color:#52617d;font-size:11px;line-height:1.7}.login-hint strong{color:#3148a0}.login-foot{text-align:center;font-size:10px;color:#9aa5b8;margin-top:22px}
+@media(max-width:480px){.login-card{padding:27px 22px;border-radius:21px}.login-card h2{font-size:25px}.login-brand{margin-bottom:26px}}
+
+/* Halaman sampul sebelum login */
+body.cover-locked{overflow:hidden}
+body.cover-locked .app,body.cover-locked #loginScreen{display:none!important}
+#coverScreen{display:none;min-height:100vh;position:relative;overflow:hidden;padding:34px;background:radial-gradient(circle at 12% 18%,#6479f4 0,transparent 30%),radial-gradient(circle at 88% 82%,#42c6ad 0,transparent 27%),linear-gradient(135deg,#101b49 0%,#243a80 58%,#4059bd 100%);color:#fff}
+body.cover-locked #coverScreen{display:flex;flex-direction:column}
+.cover-nav{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1200px;width:100%;margin:0 auto}
+.cover-brand{display:flex;align-items:center;gap:12px}.cover-brand-mark{width:45px;height:45px;border-radius:14px;background:linear-gradient(135deg,#a7b5ff,#6ce3ca);display:grid;place-items:center;color:#172554;font-size:25px;font-weight:900}
+.cover-brand strong{font-size:20px;display:block}.cover-brand small{font-size:11px;color:#c8d4ff}
+.cover-nav-actions{display:flex;gap:10px;align-items:center}.cover-nav-actions button{border:1px solid #ffffff55;background:#ffffff12;color:#fff;padding:10px 15px;border-radius:10px;font-size:12px;font-weight:700}
+.cover-main{width:100%;max-width:1200px;margin:auto;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:45px;padding:55px 0}
+.cover-label{display:inline-block;border:1px solid #ffffff4d;background:#ffffff16;padding:7px 12px;border-radius:30px;font-size:10px;letter-spacing:1.5px;font-weight:800}
+.cover-copy h1{font-size:clamp(38px,5vw,62px);line-height:1.08;letter-spacing:-2px;margin:20px 0 17px;max-width:650px}
+.cover-copy h1 span{color:#8ce8d4}.cover-copy p{font-size:15px;line-height:1.85;color:#e0e8ff;max-width:570px;margin:0 0 27px}
+.cover-actions{display:flex;gap:12px;flex-wrap:wrap}.cover-actions button{border:0;border-radius:11px;padding:14px 20px;font-weight:800;font-size:13px}
+.cover-enter{background:#fff;color:#2946a4;box-shadow:0 10px 25px #09143d40}.cover-guide{background:#ffffff18;border:1px solid #ffffff66!important;color:#fff}
+.cover-visual{min-height:340px;position:relative;display:grid;place-items:center}
+.cover-ring{position:absolute;width:290px;height:290px;border:1px solid #ffffff45;border-radius:50%}.cover-ring.inner{width:220px;height:220px;border-style:dashed;transform:rotate(24deg)}
+.cover-dashboard{width:min(350px,90%);padding:20px;border-radius:20px;background:#ffffffed;color:#1e2d61;box-shadow:0 25px 70px #07133d55;transform:rotate(3deg);z-index:1}
+.cover-dash-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800;margin-bottom:18px}.cover-live{font-size:9px;color:#0f9f75;background:#e1f8ef;padding:5px 8px;border-radius:20px}
+.cover-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.cover-metric{padding:13px;border-radius:12px;background:#f0f3ff}.cover-metric small{display:block;color:#718096;font-size:9px}.cover-metric strong{display:block;font-size:23px;margin-top:6px}
+.cover-bars{display:flex;align-items:flex-end;gap:8px;height:85px;padding:12px 8px 0;margin-top:13px;border-bottom:1px solid #e2e8f0}.cover-bars i{flex:1;border-radius:5px 5px 0 0;background:linear-gradient(#8ba0ff,#3157d5)}
+.cover-foot{max-width:1200px;width:100%;margin:0 auto;text-align:center;color:#bdcafa;font-size:10px;padding:10px}
+.cover-info{display:none;position:fixed;inset:0;background:#0b153dcc;z-index:30;padding:20px;place-items:center}
+.cover-info.show{display:grid}.cover-info-card{width:min(520px,100%);background:#fff;color:#1e293b;border-radius:20px;padding:27px;box-shadow:0 20px 70px #0004}
+.cover-info-card h2{margin:0 0 10px;color:#172554}.cover-info-card p,.cover-info-card li{font-size:13px;line-height:1.7;color:#64748b}
+@media(max-width:760px){#coverScreen{padding:22px}.cover-nav-actions button:first-child{display:none}.cover-main{grid-template-columns:1fr;gap:5px;padding:55px 0 25px}.cover-copy h1{font-size:42px}.cover-copy p{font-size:13px}.cover-visual{min-height:250px}.cover-ring{width:230px;height:230px}.cover-ring.inner{width:175px;height:175px}.cover-dashboard{max-width:310px}.cover-foot{padding-bottom:5px}}
+
+</style>
+</head>
+<body class="cover-locked auth-locked">
+
+<div id="coverScreen" aria-label="Halaman sampul EduVerse">
+  <div class="cover-nav">
+    <div class="cover-brand"><div class="cover-brand-mark">✦</div><div><strong>EduVerse</strong><small>Sistem Informasi Manajemen SDM</small></div></div>
+    <div class="cover-nav-actions">
+      <button type="button" onclick="openCoverInfo()">Tentang Sistem</button>
+      <button type="button" onclick="goToLogin()">Masuk</button>
+    </div>
+  </div>
+  <main class="cover-main">
+    <section class="cover-copy">
+      <span class="cover-label">SISTEM INFORMASI MANAJEMEN SDM</span>
+      <h1>Kelola SDM Sekolah dengan <span>Lebih Mudah.</span></h1>
+      <p>EduVerse membantu pengelolaan data pegawai, kehadiran, kinerja, serta program pendidikan dan pelatihan dalam satu sistem yang praktis dan teratur.</p>
+      <div class="cover-actions">
+        <button class="cover-enter" type="button" onclick="goToLogin()">Masuk ke Sistem <span>→</span></button>
+        <button class="cover-guide" type="button" onclick="openCoverInfo()">Pelajari Fitur</button>
+      </div>
+    </section>
+    <div class="cover-visual" aria-hidden="true">
+      <div class="cover-ring"></div><div class="cover-ring inner"></div>
+      <div class="cover-dashboard">
+        <div class="cover-dash-head"><span>✦ Ringkasan EduVerse</span><span class="cover-live">● SISTEM DEMO</span></div>
+        <div class="cover-metrics">
+          <div class="cover-metric"><small>Total Pegawai</small><strong>15</strong></div>
+          <div class="cover-metric"><small>Kehadiran</small><strong>80%</strong></div>
+          <div class="cover-metric"><small>Pelatihan Aktif</small><strong>3</strong></div>
+          <div class="cover-metric"><small>Kinerja</small><strong>86/100</strong></div>
+        </div>
+        <div class="cover-bars"><i style="height:48%"></i><i style="height:67%"></i><i style="height:58%"></i><i style="height:82%"></i><i style="height:73%"></i><i style="height:94%"></i><i style="height:80%"></i></div>
+      </div>
+    </div>
+  </main>
+  <div class="cover-foot">© 2026 EduVerse · Prototipe Sistem Informasi Manajemen SDM</div>
+  <div class="cover-info" id="coverInfo" onclick="if(event.target===this)closeCoverInfo()">
+    <section class="cover-info-card">
+      <h2>Tentang EduVerse</h2>
+      <p>EduVerse merupakan prototipe Sistem Informasi Manajemen SDM yang dirancang untuk membantu pengelolaan sumber daya manusia di lingkungan pendidikan.</p>
+      <ul><li>Data pegawai: menambah, mengubah, mencari, dan menghapus data.</li><li>Kehadiran: mencatat dan merekap presensi pegawai.</li><li>Kinerja: melihat serta memperbarui penilaian pegawai.</li><li>Pendidikan dan pelatihan: mengelola program pengembangan kompetensi.</li><li>Laporan: melihat ringkasan dan mengunduh data.</li></ul>
+      <p><strong>Catatan:</strong> data yang tersedia merupakan data simulasi untuk demonstrasi dan pembelajaran.</p>
+      <button class="btn btn-primary" type="button" onclick="closeCoverInfo()">Tutup</button>
+    </section>
+  </div>
+</div>
+
+<div id="loginScreen" aria-label="Halaman login">
+  <div class="login-orb one"></div><div class="login-orb two"></div>
+  <section class="login-card">
+    <div class="login-brand"><div class="login-brand-icon">✦</div><div><h1>EduVerse</h1><p>Sistem Informasi Manajemen SDM</p></div></div>
+    <div class="login-kicker">Selamat datang kembali</div>
+    <h2>Masuk ke akun Anda</h2>
+    <p class="login-intro">Kelola data pegawai, kehadiran, kinerja, dan pengembangan SDM dalam satu ruang kerja.</p>
+    <form id="loginForm">
+      <div class="login-field"><label for="loginPassword">Sandi akses</label><div class="password-wrap"><input id="loginPassword" type="password" placeholder="Masukkan sandi Anda" autocomplete="current-password" required autofocus><button type="button" id="togglePassword">Lihat</button></div></div>
+      <div id="loginError" class="login-error" role="alert">Sandi yang dimasukkan belum tepat. Silakan coba lagi.</div>
+      <button class="btn btn-primary login-submit" type="submit">Masuk ke Dashboard <span>→</span></button>
+    </form>
+    <div class="login-hint">🔐 <strong>Catatan:</strong> Ini adalah versi demo lokal. Sandi awal: <strong>EduVerse123!</strong></div>
+    <div class="login-foot">© 2026 EduVerse · Sistem Informasi Manajemen SDM</div>
+  </section>
+</div>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="brand-icon">E</div><div><h1>EduVerse</h1><small>SIM — Manajemen SDM</small></div></div>
+  <div><div class="nav-label">MENU UTAMA</div><nav class="nav" id="nav">
+    <button class="active" data-page="dashboard"><span class="ico">▦</span> Dashboard</button>
+    <button data-page="pegawai"><span class="ico">♙</span> Data Pegawai</button>
+    <button data-page="kehadiran"><span class="ico">◷</span> Kehadiran</button>
+    <button data-page="kinerja"><span class="ico">◎</span> Kinerja Pegawai</button>
+    <button data-page="pelatihan"><span class="ico">▤</span> Pendidikan & Pelatihan</button>
+    <button data-page="laporan"><span class="ico">▥</span> Laporan</button>
+    <button data-page="panduan"><span class="ico">ⓘ</span> Panduan Penggunaan</button>
+  </nav></div>
+  <div><div class="nav-label">PREFERENSI</div><nav class="nav"><button data-page="pengaturan"><span class="ico">⚙</span> Pengaturan Sistem</button></nav></div>
+  <div class="side-bottom"><strong>✦ Ruang kerja lebih teratur</strong>Kelola data SDM sekolah dalam satu tempat. Data demo dapat ditambah dan diedit langsung dari halaman ini.</div>
+</aside>
+<main class="main">
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:12px"><button class="mobile-menu" id="mobileMenu">☰</button><div class="crumb">EduVerse / <strong id="breadcrumb">Dashboard</strong></div></div>
+  <div class="top-right"><label class="search"><span>⌕</span><input id="globalSearch" placeholder="Cari pegawai..." aria-label="Cari pegawai"></label><div class="avatar">AD</div><div class="profile"><strong>Administrator</strong><small>Pengelola SDM</small></div></div>
+</header>
+<div class="content">
+<section id="dashboardPage" class="page">
+  <div class="page-head"><div><div class="eyebrow">RINGKASAN SISTEM</div><h2>Selamat datang di EduVerse 👋</h2><p>Pantau dan kelola informasi sumber daya manusia sekolah dengan lebih mudah. <a href="#" onclick="showPage('panduan');return false" style="color:#3157d5;font-weight:700;text-decoration:none">Lihat panduan →</a></p></div><button class="btn btn-primary" id="quickAdd">＋ Tambah Pegawai</button></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-top">Total Pegawai <span class="stat-icon" style="background:#eaf0ff;color:#3157d5">♙</span></div><strong id="totalStaff">15</strong><small>Data guru dan tenaga kependidikan</small></div>
+    <div class="stat"><div class="stat-top">Hadir Hari Ini <span class="stat-icon" style="background:#e1f8ef;color:#0f9f75">✓</span></div><strong id="presentCount">12</strong><small><b id="presentPercent">80%</b> dari total pegawai</small></div>
+    <div class="stat"><div class="stat-top">Pelatihan Aktif <span class="stat-icon" style="background:#fff2d9;color:#c47c0b">▤</span></div><strong id="trainingCount">3</strong><small>Program pengembangan kompetensi</small></div>
+    <div class="stat"><div class="stat-top">Rata-rata Kinerja <span class="stat-icon" style="background:#f1eaff;color:#805ad5">◎</span></div><strong id="avgPerformance">86<span style="font-size:15px">/100</span></strong><small>Ringkasan penilaian terakhir</small></div>
+  </div>
+  <div class="grid-main">
+    <div>
+      <div class="panel"><div class="panel-head"><div><h3>Ringkasan Kehadiran</h3><p>Ilustrasi kehadiran pegawai selama 6 bulan terakhir</p></div><span class="badge badge-blue">2026</span></div>
+        <div class="chart-area" aria-label="Grafik ringkasan kehadiran">
+          <div class="bar-group"><div class="bars"><div class="bar" style="height:70%"></div><div class="bar dark" style="height:82%"></div></div><div class="bar-label">Mei</div></div>
+          <div class="bar-group"><div class="bars"><div class="bar" style="height:76%"></div><div class="bar dark" style="height:87%"></div></div><div class="bar-label">Jun</div></div>
+          <div class="bar-group"><div class="bars"><div class="bar" style="height:72%"></div><div class="bar dark" style="height:90%"></div></div><div class="bar-label">Jul</div></div>
+          <div class="bar-group"><div class="bars"><div class="bar" style="height:80%"></div><div class="bar dark" style="height:93%"></div></div><div class="bar-label">Agu</div></div>
+          <div class="bar-group"><div class="bars"><div class="bar" style="height:78%"></div><div class="bar dark" style="height:89%"></div></div><div class="bar-label">Sep</div></div>
+          <div class="bar-group"><div class="bars"><div class="bar" style="height:85%"></div><div class="bar dark" style="height:94%"></div></div><div class="bar-label">Okt</div></div>
+        </div><div class="legend"><span><i style="background:#9baeff"></i>Target</span><span><i style="background:#3157d5"></i>Kehadiran</span></div>
+      </div>
+      <div class="panel"><div class="panel-head"><div><h3>Pegawai Terbaru</h3><p>Data pegawai yang tercatat di sistem</p></div><button class="link-btn" data-goto="pegawai">Lihat semua →</button></div><div class="table-wrap"><table><thead><tr><th>Nama Pegawai</th><th>Jabatan</th><th>Status</th></tr></thead><tbody id="recentStaff"></tbody></table></div></div>
+    </div>
+    <div>
+      <div class="panel"><div class="panel-head"><div><h3>Aktivitas Terbaru</h3><p>Catatan aktivitas sistem</p></div></div><div class="activity" id="activityList"></div></div>
+      <div class="panel"><div class="panel-head"><div><h3>Perlu Perhatian</h3><p>Hal yang dapat ditindaklanjuti</p></div></div>
+        <div class="activity-item"><div class="activity-icon" style="background:#fff2d9">⚑</div><div><strong>Evaluasi kinerja berkala</strong><p>Pastikan penilaian kinerja dilakukan secara objektif dan terdokumentasi.</p></div></div><hr style="border:0;border-top:1px solid #edf0f5;margin:16px 0">
+        <div class="activity-item"><div class="activity-icon" style="background:#e1f8ef">✦</div><div><strong>Pengembangan kompetensi digital</strong><p>Identifikasi kebutuhan pelatihan sesuai perkembangan teknologi pembelajaran.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="pegawaiPage" class="page hidden">
+ <div class="page-head"><div><div class="eyebrow">DATABASE SDM</div><h2>Data Pegawai</h2><p>Kelola data guru dan tenaga kependidikan secara terpusat.</p></div><button class="btn btn-primary" id="addStaff">＋ Tambah Pegawai</button></div>
+ <div class="notice">ℹ️ Halaman ini menggunakan data contoh. Tambahkan pegawai melalui formulir; perubahan tersimpan pada browser yang sedang digunakan.</div>
+ <div class="panel"><div class="filters"><input id="staffSearch" placeholder="Cari nama, jabatan, atau pendidikan..."><select id="statusFilter"><option value="">Semua status</option><option>Aktif</option><option>Cuti</option><option>Nonaktif</option></select><button class="btn btn-light" id="exportStaff">⇩ Ekspor CSV</button></div>
+ <div class="table-wrap"><table><thead><tr><th>Nama & ID</th><th>Jabatan</th><th>Pendidikan</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="staffTable"></tbody></table></div><div id="staffEmpty" class="empty hidden">Data pegawai tidak ditemukan.</div></div>
+</section>
+<section id="kehadiranPage" class="page hidden">
+ <div class="page-head"><div><div class="eyebrow">PRESENSI SDM</div><h2>Kehadiran Pegawai</h2><p>Catat status kehadiran harian dan lihat rekap sederhana.</p></div><button class="btn btn-primary" id="saveAttendance">✓ Simpan Kehadiran</button></div>
+ <div class="stats"><div class="stat"><div class="stat-top">Hadir <span class="stat-icon" style="background:#e1f8ef">✓</span></div><strong id="attPresent">12</strong><small>Hadir pada tanggal yang dipilih</small></div><div class="stat"><div class="stat-top">Izin <span class="stat-icon" style="background:#fff2d9">↗</span></div><strong id="attLeave">2</strong><small>Izin atau sakit</small></div><div class="stat"><div class="stat-top">Belum Diisi <span class="stat-icon" style="background:#ffe8e8">!</span></div><strong id="attMissing">1</strong><small>Perlu dikonfirmasi</small></div><div class="stat"><div class="stat-top">Tanggal <span class="stat-icon" style="background:#eaf0ff">▦</span></div><strong id="attDateLabel" style="font-size:20px">Hari ini</strong><small>Rekap presensi</small></div></div>
+ <div class="panel"><div class="panel-head"><div><h3>Daftar Presensi</h3><p>Pilih status kehadiran untuk setiap pegawai.</p></div><input class="form-control" id="attendanceDate" type="date" style="max-width:160px"></div><div class="table-wrap"><table><thead><tr><th>Pegawai</th><th>Jabatan</th><th>Status Kehadiran</th></tr></thead><tbody id="attendanceTable"></tbody></table></div></div>
+</section>
+<section id="kinerjaPage" class="page hidden">
+ <div class="page-head"><div><div class="eyebrow">PENGEMBANGAN SDM</div><h2>Kinerja Pegawai</h2><p>Dokumentasikan penilaian kinerja untuk mendukung evaluasi yang lebih terarah.</p></div><button class="btn btn-primary" id="addPerformance">＋ Tambah Penilaian</button></div>
+ <div class="notice">Gunakan penilaian sebagai bahan refleksi dan pengembangan. Nilai pada halaman ini adalah data simulasi, bukan hasil penilaian resmi.</div>
+ <div class="panel"><div class="panel-head"><div><h3>Ringkasan Penilaian</h3><p>Nilai terakhir tiap pegawai yang tersedia pada data demo</p></div><select id="performanceFilter" class="form-control"><option value="">Semua kategori</option><option value="90">Sangat Baik (90+)</option><option value="80">Baik (80–89)</option><option value="0">Perlu Pengembangan (&lt;80)</option></select></div><div class="table-wrap"><table><thead><tr><th>Nama Pegawai</th><th>Jabatan</th><th>Nilai</th><th>Kategori</th><th>Catatan</th></tr></thead><tbody id="performanceTable"></tbody></table></div></div>
+</section>
+<section id="pelatihanPage" class="page hidden">
+ <div class="page-head"><div><div class="eyebrow">KOMPETENSI & PENGEMBANGAN</div><h2>Pendidikan & Pelatihan</h2><p>Catat program pelatihan untuk meningkatkan kompetensi guru dan staf.</p></div><button class="btn btn-primary" id="addTraining">＋ Tambah Program</button></div>
+ <div class="section-cards" id="trainingCards"></div>
+ <div class="panel" style="margin-top:18px"><div class="panel-head"><div><h3>Daftar Program</h3><p>Program pelatihan yang dikelola melalui sistem</p></div></div><div class="table-wrap"><table><thead><tr><th>Nama Program</th><th>Peserta</th><th>Periode</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="trainingTable"></tbody></table></div></div>
+</section>
+<section id="laporanPage" class="page hidden">
+ <div class="page-head"><div><div class="eyebrow">DATA & ANALISIS</div><h2>Laporan SDM</h2><p>Ringkasan informasi untuk membantu perencanaan dan pengambilan keputusan.</p></div><button class="btn btn-primary" id="exportReport">⇩ Unduh Laporan CSV</button></div>
+ <div class="stats"><div class="stat"><div class="stat-top">Total Pegawai</div><strong id="reportStaff">15</strong><small>Terdaftar di database</small></div><div class="stat"><div class="stat-top">Status Aktif</div><strong id="reportActive">14</strong><small>Pegawai aktif</small></div><div class="stat"><div class="stat-top">Rata-rata Kinerja</div><strong id="reportPerf">86</strong><small>Dari penilaian yang tersedia</small></div><div class="stat"><div class="stat-top">Program Pelatihan</div><strong id="reportTrain">3</strong><small>Semua status program</small></div></div>
+ <div class="panel"><div class="panel-head"><div><h3>Ringkasan Komposisi Pegawai</h3><p>Jumlah berdasarkan jabatan</p></div></div><div id="roleSummary" class="section-cards"></div></div>
+ <div class="notice">Catatan: data dan visualisasi pada prototipe ini masih bersifat simulasi. Untuk penggunaan resmi, sistem perlu dilengkapi autentikasi, basis data server, hak akses, pencadangan, dan perlindungan data pribadi.</div>
+</section>
+<section id="pengaturanPage" class="page hidden">
+ <div class="page-head"><div><div class="eyebrow">KONFIGURASI</div><h2>Pengaturan Sistem</h2><p>Sesuaikan identitas sekolah dan pengelolaan data demo.</p></div></div>
+ <div class="panel"><div class="panel-head"><div><h3>Identitas Institusi</h3><p>Informasi yang ditampilkan pada sistem</p></div></div><div class="form-grid"><div class="field"><label>Nama Institusi</label><input id="schoolName" value="MI EduVerse Surabaya (Data Simulasi)"></div><div class="field"><label>Tahun Ajaran</label><select id="schoolYear"><option>2026/2027</option><option>2025/2026</option><option>2027/2028</option></select></div><div class="field"><label>Nama Pengelola</label><input id="adminName" value="Administrator"></div><div class="field"><label>Peran Pengelola</label><select><option>Pengelola SDM</option><option>Kepala Sekolah</option><option>Operator Sekolah</option></select></div></div><div class="modal-actions"><button class="btn btn-primary" id="saveSettings">Simpan Pengaturan</button></div></div>
+ <div class="panel"><div class="panel-head"><div><h3>Pengelolaan Data Demo</h3><p>Data ini hanya tersimpan pada browser perangkat ini.</p></div></div><p style="font-size:12px;color:var(--muted);line-height:1.6">Jika ingin kembali ke data awal, gunakan tombol reset. Tindakan ini akan menghapus perubahan lokal yang dibuat pada prototipe ini.</p><button class="btn btn-danger" id="resetData">Reset Data Demo</button></div>
+</section>
+
+<section id="panduanPage" class="page hidden">
+ <div class="page-head"><div><div class="eyebrow">PUSAT BANTUAN</div><h2>Panduan Penggunaan EduVerse</h2><p>Ikuti langkah-langkah berikut untuk mencoba setiap fitur SIM-SDM.</p></div><button class="btn btn-primary" onclick="showPage('dashboard')">Kembali ke Dashboard</button></div>
+ <div class="guide-hero"><div><span class="guide-pill">PANDUAN SINGKAT</span><h3>Semua data SDM dalam satu ruang kerja.</h3><p>Mulai dari memasukkan data pegawai, mencatat kehadiran, mengelola pelatihan, sampai melihat laporan. Gunakan data contoh terlebih dahulu untuk mencoba alur sistem.</p><button class="btn btn-white" onclick="showPage('pegawai')">Mulai dari Data Pegawai →</button></div><div class="guide-illustration"><div class="guide-orbit orbit-one"></div><div class="guide-orbit orbit-two"></div><div class="guide-float float-a">♙<small>Data SDM</small></div><div class="guide-float float-b">✓<small>Presensi</small></div><div class="guide-core">E</div><div class="guide-float float-c">▥<small>Laporan</small></div></div></div>
+ <div class="guide-steps">
+  <article class="guide-step"><div class="step-number">01</div><div class="step-icon">♙</div><h3>Lengkapi Data Pegawai</h3><p>Buka menu <b>Data Pegawai</b>, lalu tekan <b>Tambah Pegawai</b>. Isi nama, jabatan, pendidikan, status, nilai kinerja awal, dan catatan jika diperlukan. Tekan Simpan.</p><button class="link-btn" onclick="showPage('pegawai')">Buka Data Pegawai →</button></article>
+  <article class="guide-step"><div class="step-number">02</div><div class="step-icon">◷</div><h3>Catat Kehadiran</h3><p>Pilih menu <b>Kehadiran</b>, tentukan tanggal, lalu ubah status setiap pegawai menjadi Hadir, Izin, Sakit, atau Belum Diisi. Tekan <b>Simpan Kehadiran</b> agar rekap tersimpan.</p><button class="link-btn" onclick="showPage('kehadiran')">Buka Kehadiran →</button></article>
+  <article class="guide-step"><div class="step-number">03</div><div class="step-icon">◎</div><h3>Perbarui Penilaian</h3><p>Masuk ke <b>Kinerja Pegawai</b> untuk melihat ringkasan nilai. Gunakan Tambah Penilaian untuk memperbarui nilai dan catatan evaluasi pegawai.</p><button class="link-btn" onclick="showPage('kinerja')">Buka Kinerja →</button></article>
+  <article class="guide-step"><div class="step-number">04</div><div class="step-icon">▤</div><h3>Kelola Pelatihan</h3><p>Di menu <b>Pendidikan & Pelatihan</b>, tekan Tambah Program. Masukkan nama program, jumlah peserta, periode, status, dan deskripsi singkat.</p><button class="link-btn" onclick="showPage('pelatihan')">Buka Pelatihan →</button></article>
+  <article class="guide-step"><div class="step-number">05</div><div class="step-icon">▥</div><h3>Unduh Laporan</h3><p>Buka menu <b>Laporan</b>, periksa ringkasan jumlah pegawai, status aktif, kinerja, dan program pelatihan. Tekan Unduh Laporan CSV untuk membuka data di Excel atau aplikasi spreadsheet.</p><button class="link-btn" onclick="showPage('laporan')">Buka Laporan →</button></article>
+  <article class="guide-step"><div class="step-number">06</div><div class="step-icon">⚙</div><h3>Atur Sistem dengan Aman</h3><p>Gunakan menu Pengaturan untuk mengisi identitas institusi. Tombol Reset Data Demo mengembalikan data awal dan menghapus perubahan lokal yang telah dibuat.</p><button class="link-btn" onclick="showPage('pengaturan')">Buka Pengaturan →</button></article>
+ </div>
+ <div class="panel guide-note"><div class="guide-note-icon">💡</div><div><h3>Hal penting yang perlu diketahui</h3><ul><li>Data yang tampil saat pertama kali dibuka adalah <b>data simulasi</b>, bukan data resmi sekolah.</li><li>Perubahan tersimpan pada browser/perangkat yang digunakan dan belum tersinkronisasi dengan perangkat lain.</li><li>Jangan memasukkan data pribadi atau data sensitif yang sebenarnya ke prototipe ini.</li><li>Untuk pemakaian resmi, sistem masih perlu backend/database, login, pengaturan hak akses, keamanan, dan pencadangan data.</li></ul></div></div>
+</section>
+
+<div class="footer">EduVerse SIM-SDM · Prototipe antarmuka untuk kebutuhan demonstrasi dan pembelajaran</div>
+</div>
+</main>
+</div>
+<div id="modalRoot"></div><div id="toastRoot"></div>
+<script>
+const initialStaff=[
+{id:1,name:"Siti Rahmawati, S.Pd.",role:"Guru Kelas",education:"S1 Pendidikan",status:"Aktif",score:92,note:"Konsisten dalam perencanaan pembelajaran",attendance:"Hadir"},
+{id:2,name:"Ahmad Fauzi, S.Pd.I.",role:"Guru Agama",education:"S1 Pendidikan Islam",status:"Aktif",score:88,note:"Perlu penguatan media digital",attendance:"Hadir"},
+{id:3,name:"Dewi Anggraini, S.Pd.",role:"Guru Kelas",education:"S1 Pendidikan",status:"Aktif",score:86,note:"Kolaborasi dan komunikasi baik",attendance:"Hadir"},
+{id:4,name:"Budi Santoso",role:"Tenaga Administrasi",education:"D3 Administrasi",status:"Aktif",score:83,note:"Administrasi rapi dan tepat waktu",attendance:"Izin"},
+{id:5,name:"Nur Aisyah, S.Pd.",role:"Guru Kelas",education:"S1 Pendidikan",status:"Aktif",score:90,note:"Aktif mengembangkan metode belajar",attendance:"Hadir"},
+{id:6,name:"Rizky Pratama",role:"Operator Sekolah",education:"S1 Sistem Informasi",status:"Aktif",score:85,note:"Perlu dokumentasi alur kerja",attendance:"Hadir"},
+{id:7,name:"Lina Marlina, S.Pd.",role:"Guru Kelas",education:"S1 Pendidikan",status:"Aktif",score:87,note:"Pembelajaran berjalan baik",attendance:"Hadir"},
+{id:8,name:"Hendra Wijaya",role:"Tenaga Kependidikan",education:"SMA/SMK",status:"Cuti",score:78,note:"Perlu tindak lanjut pengembangan",attendance:"Izin"},
+{id:9,name:"Fitri Handayani, S.Pd.",role:"Guru Kelas",education:"S1 Pendidikan",status:"Aktif",score:91,note:"Baik dalam pengelolaan kelas",attendance:"Hadir"},
+{id:10,name:"M. Ilham, S.Pd.",role:"Guru Olahraga",education:"S1 Pendidikan",status:"Aktif",score:82,note:"Perlu variasi evaluasi belajar",attendance:"Hadir"},
+{id:11,name:"Rina Kurniawati, S.Pd.",role:"Guru Kelas",education:"S1 Pendidikan",status:"Aktif",score:89,note:"Aktif dalam kerja tim",attendance:"Hadir"},
+{id:12,name:"Agus Setiawan",role:"Satpam",education:"SMA/SMK",status:"Aktif",score:84,note:"Pelaksanaan tugas baik",attendance:"Hadir"},
+{id:13,name:"Wahyu Lestari, S.Pd.",role:"Guru Kelas",education:"S1 Pendidikan",status:"Aktif",score:80,note:"Perlu penguatan asesmen",attendance:"Belum Diisi"},
+{id:14,name:"Dian Puspitasari, S.Pd.",role:"Guru Kelas",education:"S1 Pendidikan",status:"Aktif",score:88,note:"Perlu berbagi praktik baik",attendance:"Hadir"},
+{id:15,name:"Eko Prasetyo",role:"Tenaga Administrasi",education:"D3 Administrasi",status:"Aktif",score:79,note:"Perlu penguatan penggunaan aplikasi",attendance:"Hadir"}
+];
+const initialTrainings=[
+{id:1,name:"Pelatihan Literasi Digital Guru",participants:12,period:"Okt–Nov 2026",status:"Berjalan",desc:"Penggunaan teknologi untuk mendukung pembelajaran."},
+{id:2,name:"Pengelolaan Administrasi Sekolah",participants:5,period:"Nov 2026",status:"Terjadwal",desc:"Penguatan pengelolaan dokumen dan data SDM."},
+{id:3,name:"Workshop Evaluasi Kinerja",participants:8,period:"Des 2026",status:"Terjadwal",desc:"Penyusunan evaluasi kinerja yang terukur."}
+];
+let staff,trainings,activities,attendanceByDate={};
+function loadData(){try{staff=JSON.parse(localStorage.getItem("ev_staff"))||structuredClone(initialStaff);trainings=JSON.parse(localStorage.getItem("ev_trainings"))||structuredClone(initialTrainings);activities=JSON.parse(localStorage.getItem("ev_activities"))||[{icon:"♙",title:"Data pegawai siap digunakan",desc:"Data awal berhasil dimuat ke dalam prototipe.",time:"Baru saja"},{icon:"▤",title:"Program pelatihan tersedia",desc:"Tiga program contoh telah ditambahkan.",time:"Hari ini"},{icon:"✓",title:"Presensi harian",desc:"Silakan periksa dan sesuaikan status kehadiran.",time:"Hari ini"}];attendanceByDate=JSON.parse(localStorage.getItem("ev_attendance"))||{};}catch(e){staff=structuredClone(initialStaff);trainings=structuredClone(initialTrainings);activities=[];attendanceByDate={};}}
+function saveData(){localStorage.setItem("ev_staff",JSON.stringify(staff));localStorage.setItem("ev_trainings",JSON.stringify(trainings));localStorage.setItem("ev_activities",JSON.stringify(activities));localStorage.setItem("ev_attendance",JSON.stringify(attendanceByDate));}
+function initials(name){return name.replace(/,.*$/,"").split(" ").filter(Boolean).slice(0,2).map(x=>x[0]).join("").toUpperCase()}
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function badge(status){let cls=status==="Aktif"||status==="Hadir"||status==="Berjalan"?"badge-green":status==="Cuti"||status==="Izin"||status==="Terjadwal"?"badge-orange":status==="Nonaktif"||status==="Belum Diisi"?"badge-red":"badge-blue";return `<span class="badge ${cls}">${escapeHtml(status)}</span>`}
+function logActivity(title,desc,icon="✓"){activities.unshift({title,desc,icon,time:"Baru saja"});activities=activities.slice(0,6);saveData()}
+function toast(msg){const root=document.getElementById("toastRoot");root.innerHTML=`<div class="toast">${escapeHtml(msg)}</div>`;setTimeout(()=>root.innerHTML="",2800)}
+function showPage(page){document.querySelectorAll(".page").forEach(x=>x.classList.add("hidden"));document.getElementById(page+"Page").classList.remove("hidden");document.querySelectorAll("#nav button[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));const label={dashboard:"Dashboard",pegawai:"Data Pegawai",kehadiran:"Kehadiran",kinerja:"Kinerja Pegawai",pelatihan:"Pendidikan & Pelatihan",laporan:"Laporan",panduan:"Panduan Penggunaan",pengaturan:"Pengaturan Sistem"};document.getElementById("breadcrumb").textContent=label[page]||page;document.getElementById("sidebar").classList.remove("open");renderAll()}
+document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+document.querySelectorAll("[data-goto]").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.goto)));
+document.getElementById("mobileMenu").onclick=()=>document.getElementById("sidebar").classList.toggle("open");
+function renderDashboard(){document.getElementById("totalStaff").textContent=staff.length;let att=staff.filter(s=>s.attendance==="Hadir").length;document.getElementById("presentCount").textContent=att;document.getElementById("presentPercent").textContent=(staff.length?Math.round(att/staff.length*100):0)+"%";document.getElementById("trainingCount").textContent=trainings.filter(t=>t.status==="Berjalan"||t.status==="Terjadwal").length;let avg=staff.length?Math.round(staff.reduce((a,s)=>a+Number(s.score||0),0)/staff.length):0;document.getElementById("avgPerformance").innerHTML=avg+'<span style="font-size:15px">/100</span>';document.getElementById("recentStaff").innerHTML=staff.slice(-5).reverse().map(s=>`<tr><td><div class="person"><div class="mini-avatar">${initials(s.name)}</div><div><strong>${escapeHtml(s.name)}</strong><small>EMP-${String(s.id).padStart(3,"0")}</small></div></div></td><td>${escapeHtml(s.role)}</td><td>${badge(s.status)}</td></tr>`).join("");document.getElementById("activityList").innerHTML=activities.slice(0,5).map(a=>`<div class="activity-item"><div class="activity-icon">${escapeHtml(a.icon)}</div><div><strong>${escapeHtml(a.title)}</strong><p>${escapeHtml(a.desc)}</p><time>${escapeHtml(a.time)}</time></div></div>`).join("")}
+function renderStaff(){let q=(document.getElementById("staffSearch")?.value||"").toLowerCase(),st=document.getElementById("statusFilter")?.value||"";let rows=staff.filter(s=>(`${s.name} ${s.role} ${s.education}`.toLowerCase().includes(q))&&(!st||s.status===st));document.getElementById("staffTable").innerHTML=rows.map(s=>`<tr><td><div class="person"><div class="mini-avatar">${initials(s.name)}</div><div><strong>${escapeHtml(s.name)}</strong><small>EMP-${String(s.id).padStart(3,"0")}</small></div></div></td><td>${escapeHtml(s.role)}</td><td>${escapeHtml(s.education)}</td><td>${badge(s.status)}</td><td><button class="btn btn-light" style="padding:7px 9px" onclick="editStaff(${s.id})">Edit</button> <button class="btn btn-danger" style="padding:7px 9px" onclick="deleteStaff(${s.id})">Hapus</button></td></tr>`).join("");document.getElementById("staffEmpty").classList.toggle("hidden",rows.length>0)}
+function renderAttendance(){const date=document.getElementById("attendanceDate").value||new Date().toISOString().slice(0,10);if(attendanceByDate[date])staff.forEach(s=>s.attendance=attendanceByDate[date][s.id]||s.attendance);document.getElementById("attendanceTable").innerHTML=staff.map(s=>`<tr><td><div class="person"><div class="mini-avatar">${initials(s.name)}</div><div><strong>${escapeHtml(s.name)}</strong><small>EMP-${String(s.id).padStart(3,"0")}</small></div></div></td><td>${escapeHtml(s.role)}</td><td><select class="form-control attendance-select" data-id="${s.id}"><option ${s.attendance==="Hadir"?"selected":""}>Hadir</option><option ${s.attendance==="Izin"?"selected":""}>Izin</option><option ${s.attendance==="Sakit"?"selected":""}>Sakit</option><option ${s.attendance==="Belum Diisi"?"selected":""}>Belum Diisi</option></select></td></tr>`).join("");document.querySelectorAll(".attendance-select").forEach(el=>el.onchange=()=>{let s=staff.find(x=>x.id==el.dataset.id);s.attendance=el.value;updateAttendanceStats()});document.getElementById("attDateLabel").textContent=date===new Date().toISOString().slice(0,10)?"Hari ini":date;updateAttendanceStats()}
+function updateAttendanceStats(){let vals=[...document.querySelectorAll(".attendance-select")].map(x=>x.value);if(!vals.length)vals=staff.map(x=>x.attendance);document.getElementById("attPresent").textContent=vals.filter(x=>x==="Hadir").length;document.getElementById("attLeave").textContent=vals.filter(x=>["Izin","Sakit"].includes(x)).length;document.getElementById("attMissing").textContent=vals.filter(x=>x==="Belum Diisi").length}
+function renderPerformance(){let f=document.getElementById("performanceFilter")?.value||"";let rows=staff.filter(s=>!f||(f==="90"?s.score>=90:f==="80"?s.score>=80&&s.score<90:s.score<80));document.getElementById("performanceTable").innerHTML=rows.map(s=>`<tr><td><div class="person"><div class="mini-avatar">${initials(s.name)}</div><div><strong>${escapeHtml(s.name)}</strong><small>EMP-${String(s.id).padStart(3,"0")}</small></div></div></td><td>${escapeHtml(s.role)}</td><td><strong>${s.score}</strong>/100</td><td>${badge(s.score>=90?"Sangat Baik":s.score>=80?"Baik":"Perlu Pengembangan")}</td><td style="white-space:normal;min-width:180px">${escapeHtml(s.note||"Belum ada catatan")}</td></tr>`).join("")}
+function renderTrainings(){document.getElementById("trainingCards").innerHTML=trainings.map(t=>`<div class="feature-card"><div class="big-icon">▤</div>${badge(t.status)}<h3 style="margin-top:12px">${escapeHtml(t.name)}</h3><p>${escapeHtml(t.desc||"Program pengembangan kompetensi pegawai.")}</p><div class="count">${t.participants} <span style="font-size:11px;font-weight:500;color:var(--muted)">peserta</span></div><p style="margin:5px 0 0">◷ ${escapeHtml(t.period)}</p></div>`).join("");document.getElementById("trainingTable").innerHTML=trainings.map(t=>`<tr><td><strong>${escapeHtml(t.name)}</strong></td><td>${t.participants} orang</td><td>${escapeHtml(t.period)}</td><td>${badge(t.status)}</td><td><button class="btn btn-danger" style="padding:7px 9px" onclick="deleteTraining(${t.id})">Hapus</button></td></tr>`).join("")}
+function renderReports(){document.getElementById("reportStaff").textContent=staff.length;document.getElementById("reportActive").textContent=staff.filter(s=>s.status==="Aktif").length;document.getElementById("reportPerf").textContent=staff.length?Math.round(staff.reduce((a,s)=>a+Number(s.score||0),0)/staff.length):0;document.getElementById("reportTrain").textContent=trainings.length;let roles={};staff.forEach(s=>roles[s.role]=(roles[s.role]||0)+1);document.getElementById("roleSummary").innerHTML=Object.entries(roles).map(([r,n])=>`<div class="feature-card"><div class="big-icon">♙</div><p style="margin-bottom:8px">${escapeHtml(r)}</p><div class="count">${n} <span style="font-size:11px;font-weight:500;color:var(--muted)">pegawai</span></div><div style="height:5px;background:#edf0f8;border-radius:9px;margin-top:13px;overflow:hidden"><div style="height:100%;width:${staff.length?n/staff.length*100:0}%;background:var(--blue);border-radius:9px"></div></div></div>`).join("")}
+function renderAll(){renderDashboard();renderStaff();renderAttendance();renderPerformance();renderTrainings();renderReports()}
+function openModal(title,body,onSave,saveLabel="Simpan"){const root=document.getElementById("modalRoot");root.innerHTML=`<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><div class="modal-head"><h3>${title}</h3><button class="close" id="closeModal">×</button></div><form id="modalForm">${body}<div class="modal-actions"><button type="button" class="btn btn-light" id="cancelModal">Batal</button><button class="btn btn-primary" type="submit">${saveLabel}</button></div></form></div></div>`;const close=()=>root.innerHTML="";document.getElementById("closeModal").onclick=close;document.getElementById("cancelModal").onclick=close;document.getElementById("modalBackdrop").onclick=e=>{if(e.target.id==="modalBackdrop")close()};document.getElementById("modalForm").onsubmit=e=>{e.preventDefault();const fd=new FormData(e.target);onSave(fd);close()}}
+function staffForm(s={}){openModal(s.id?"Edit Data Pegawai":"Tambah Pegawai",`<div class="form-grid"><div class="field full"><label>Nama lengkap</label><input name="name" required value="${escapeHtml(s.name||"")}" placeholder="Nama dan gelar"></div><div class="field"><label>Jabatan</label><select name="role">${["Guru Kelas","Guru Agama","Guru Olahraga","Tenaga Administrasi","Operator Sekolah","Tenaga Kependidikan","Satpam","Kepala Sekolah"].map(r=>`<option ${s.role===r?"selected":""}>${r}</option>`).join("")}</select></div><div class="field"><label>Pendidikan terakhir</label><select name="education">${["S1 Pendidikan","S1 Pendidikan Islam","S1 Sistem Informasi","D3 Administrasi","SMA/SMK","S2","Lainnya"].map(r=>`<option ${s.education===r?"selected":""}>${r}</option>`).join("")}</select></div><div class="field"><label>Status pegawai</label><select name="status">${["Aktif","Cuti","Nonaktif"].map(r=>`<option ${s.status===r?"selected":""}>${r}</option>`).join("")}</select></div><div class="field"><label>Nilai kinerja (0–100)</label><input name="score" type="number" min="0" max="100" value="${s.score??85}" required></div><div class="field full"><label>Catatan kinerja</label><input name="note" value="${escapeHtml(s.note||"")}" placeholder="Catatan singkat (opsional)"></div></div>`,fd=>{let data={name:fd.get("name").trim(),role:fd.get("role"),education:fd.get("education"),status:fd.get("status"),score:Number(fd.get("score")),note:fd.get("note"),attendance:s.attendance||"Belum Diisi"};if(s.id){Object.assign(staff.find(x=>x.id===s.id),data);logActivity("Data pegawai diperbarui",data.name+" telah diperbarui.","✎")}else{data.id=Math.max(0,...staff.map(x=>x.id))+1;staff.push(data);logActivity("Pegawai baru ditambahkan",data.name+" ditambahkan ke database.","♙")}saveData();renderAll();toast(s.id?"Data pegawai diperbarui":"Pegawai berhasil ditambahkan")})}
+function editStaff(id){const s=staff.find(x=>x.id===id);if(s)staffForm(s)}
+function deleteStaff(id){const s=staff.find(x=>x.id===id);if(!s)return;if(confirm("Hapus data "+s.name+"?")){staff=staff.filter(x=>x.id!==id);logActivity("Data pegawai dihapus",s.name+" dihapus dari database.","−");saveData();renderAll();toast("Data pegawai dihapus")}}
+function deleteTraining(id){const t=trainings.find(x=>x.id===id);if(t&&confirm("Hapus program "+t.name+"?")){trainings=trainings.filter(x=>x.id!==id);logActivity("Program pelatihan dihapus",t.name+" dihapus.","−");saveData();renderAll();toast("Program dihapus")}}
+document.getElementById("addStaff").onclick=()=>staffForm();document.getElementById("quickAdd").onclick=()=>staffForm();document.getElementById("staffSearch").oninput=renderStaff;document.getElementById("statusFilter").onchange=renderStaff;document.getElementById("performanceFilter").onchange=renderPerformance;
+document.getElementById("saveAttendance").onclick=()=>{const date=document.getElementById("attendanceDate").value||new Date().toISOString().slice(0,10);attendanceByDate[date]={};document.querySelectorAll(".attendance-select").forEach(el=>{attendanceByDate[date][el.dataset.id]=el.value;const s=staff.find(x=>x.id==el.dataset.id);if(s)s.attendance=el.value});logActivity("Presensi disimpan","Kehadiran untuk tanggal "+date+" telah diperbarui.","✓");saveData();renderAll();toast("Data kehadiran berhasil disimpan")};
+document.getElementById("attendanceDate").value=new Date().toISOString().slice(0,10);document.getElementById("attendanceDate").onchange=renderAttendance;
+document.getElementById("addPerformance").onclick=()=>openModal("Tambah Penilaian Kinerja",`<div class="form-grid"><div class="field full"><label>Pegawai</label><select name="id">${staff.map(s=>`<option value="${s.id}">${escapeHtml(s.name)}</option>`).join("")}</select></div><div class="field"><label>Nilai (0–100)</label><input type="number" name="score" min="0" max="100" required value="85"></div><div class="field"><label>Catatan</label><input name="note" placeholder="Catatan evaluasi"></div></div>`,fd=>{let s=staff.find(x=>x.id===Number(fd.get("id")));if(s){s.score=Number(fd.get("score"));s.note=fd.get("note");logActivity("Penilaian kinerja diperbarui","Nilai "+s.name+" diperbarui menjadi "+s.score+".","◎");saveData();renderAll();toast("Penilaian disimpan")}},"Simpan Penilaian");
+document.getElementById("addTraining").onclick=()=>openModal("Tambah Program Pelatihan",`<div class="form-grid"><div class="field full"><label>Nama program</label><input name="name" required placeholder="Contoh: Workshop pembelajaran digital"></div><div class="field"><label>Jumlah peserta</label><input name="participants" type="number" min="0" required value="5"></div><div class="field"><label>Periode</label><input name="period" required placeholder="Contoh: Des 2026"></div><div class="field"><label>Status</label><select name="status"><option>Terjadwal</option><option>Berjalan</option><option>Selesai</option></select></div><div class="field full"><label>Deskripsi</label><input name="desc" placeholder="Tujuan singkat program"></div></div>`,fd=>{trainings.push({id:Math.max(0,...trainings.map(t=>t.id))+1,name:fd.get("name"),participants:Number(fd.get("participants")),period:fd.get("period"),status:fd.get("status"),desc:fd.get("desc")});logActivity("Program pelatihan ditambahkan",fd.get("name")+" ditambahkan.","▤");saveData();renderAll();toast("Program pelatihan ditambahkan")});
+function downloadCSV(filename,rows){const csv=rows.map(row=>row.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(",")).join("\r\n");const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8;"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=filename;a.click();URL.revokeObjectURL(a.href)}
+document.getElementById("exportStaff").onclick=()=>downloadCSV("data-pegawai-eduverse.csv",[["ID","Nama","Jabatan","Pendidikan","Status","Nilai Kinerja","Catatan"],...staff.map(s=>[s.id,s.name,s.role,s.education,s.status,s.score,s.note])]);
+document.getElementById("exportReport").onclick=()=>downloadCSV("laporan-sdm-eduverse.csv",[["ID","Nama","Jabatan","Pendidikan","Status","Nilai Kinerja","Kehadiran"],...staff.map(s=>[s.id,s.name,s.role,s.education,s.status,s.score,s.attendance]),[],["Ringkasan"],["Total Pegawai",staff.length],["Pegawai Aktif",staff.filter(s=>s.status==="Aktif").length],["Rata-rata Kinerja",staff.length?Math.round(staff.reduce((a,s)=>a+s.score,0)/staff.length):0],["Jumlah Program Pelatihan",trainings.length]]);
+document.getElementById("saveSettings").onclick=()=>{document.querySelector(".profile strong").textContent=document.getElementById("adminName").value||"Administrator";document.querySelector(".brand small").textContent="SIM — Manajemen SDM";logActivity("Pengaturan disimpan","Identitas institusi telah diperbarui.","⚙");saveData();toast("Pengaturan berhasil disimpan")};
+document.getElementById("resetData").onclick=()=>{if(confirm("Reset semua data demo dan perubahan lokal?")){["ev_staff","ev_trainings","ev_activities","ev_attendance"].forEach(k=>localStorage.removeItem(k));loadData();renderAll();toast("Data demo dikembalikan ke awal")}};
+document.getElementById("globalSearch").addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.value.trim()){showPage("pegawai");document.getElementById("staffSearch").value=e.target.value;renderStaff()}});
+loadData();renderAll();
+
+// Login sederhana untuk prototipe lokal. Bukan autentikasi server yang aman.
+const DEMO_PASSWORD = "EduVerse123!";
+const loginForm = document.getElementById("loginForm");
+const passwordInput = document.getElementById("loginPassword");
+const loginError = document.getElementById("loginError");
+function goToLogin() {
+  document.body.classList.remove("cover-locked");
+  document.body.classList.add("auth-locked");
+  setTimeout(() => passwordInput.focus(), 80);
+}
+function openCoverInfo() {
+  document.getElementById("coverInfo").classList.add("show");
+}
+function closeCoverInfo() {
+  document.getElementById("coverInfo").classList.remove("show");
+}
+if (sessionStorage.getItem("eduverse_authenticated") === "yes") {
+  document.body.classList.remove("cover-locked", "auth-locked");
+}
+loginForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+  if (passwordInput.value === DEMO_PASSWORD) {
+    sessionStorage.setItem("eduverse_authenticated", "yes");
+    document.body.classList.remove("auth-locked");
+    loginError.style.display = "none";
+    passwordInput.value = "";
+  } else {
+    loginError.style.display = "block";
+    passwordInput.select();
+  }
+});
+document.getElementById("togglePassword").addEventListener("click", function() {
+  const visible = passwordInput.type === "password";
+  passwordInput.type = visible ? "text" : "password";
+  this.textContent = visible ? "Sembunyikan" : "Lihat";
+  passwordInput.focus();
+});
+</script>
+</body>
+</html>
